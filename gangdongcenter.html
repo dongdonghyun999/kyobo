@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>교보생명 간편조회</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Sans KR", sans-serif;
+      background-color: #FFF3E0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .header {
+      background-color: #FF6F61;
+      color: white;
+      padding: 20px;
+      font-size: 28px;
+      width: 100%;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 30px 20px;
+    }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      width: 100%;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 320px;
+      background-color: #e0e0e0; /* 회색 배경으로 수정됨 */
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .btn {
+      width: 200px;
+      height: 200px;
+      background-color: #FF6F61;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .share-btn {
+      width: 200px;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #FF6F61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    @media (max-width: 450px) {
+      .button-row {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 타이틀 -->
+  <div class="header">교보생명 간편조회</div>
+
+  <!-- 버튼 영역 -->
+  <div class="container">
+    <div class="button-row">
+      <!-- 신용대출 -->
+      <div class="button-group">
+        <button class="btn" onclick="goToSite('https://www.kyobo.com/dgt/web/loan/credit/credit-loan-step1')">
+          신용대출<br>간편조회
+        </button>
+        <button class="share-btn" onclick="shareSite('https://www.kyobo.com/dgt/web/loan/credit/credit-loan-step1')">고객께 링크 보내기</button>
+      </div>
+
+      <!-- 보험계약대출 -->
+      <div class="button-group">
+        <button class="btn" onclick="goToSite('https://www.kyobo.com/dgt/web/loan/direct/link/insurance-contract-loan-step1')">
+          보험계약대출<br>간편조회
+        </button>
+        <button class="share-btn" onclick="shareSite('https://www.kyobo.com/dgt/web/loan/direct/link/insurance-contract-loan-step1')">고객께 링크 보내기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToSite(url) {
+      window.location.href = url;
+    }
+
+    function shareSite(url) {
+      if (navigator.share) {
+        navigator.share({
+          title: "교보생명 대출 간편조회",
+          text: "고객님의 대출 가능 금리와 한도를 확인해보세요.",
+          url: url
+        }).catch((error) => {
+          console.error("공유 실패:", error);
+        });
+      } else {
+        navigator.clipboard.writeText(url).then(() => {
+          alert("URL이 복사되었습니다. 고객님께 전달해 주세요.");
+        }).catch(err => {
+          console.error("클립보드 복사 실패:", err);
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
